@@ -1,49 +1,82 @@
-# Windows-Event-Log-Analysis-Lab
-# 📁 Windows Event Log Analysis SOC Analyst Lab
-Using Kali Linux to Attack Windows & Analyzing Logs in Event Viewer
+# 🛡️ Wazuh SIEM Lab: Manager & Agents Deployment
 
-This lab simulates a real SOC investigation using a Windows VM as the victim and a Kali Linux VM as the attacker.
-I have performed multiple attacks, triggered Windows event logs, and analyzed as a SOC analyst.
+This repository documents a **Wazuh Security Information and Event Management (SIEM) lab**, built to simulate a corporate cybersecurity monitoring environment.  
+It includes a **Wazuh Manager** deployment, multiple **agents** on Windows and Linux, and a complete logging, alerting, and dashboard setup.
 
-# 🧱 Lab Architecture
-Attack Machine: Kali Linux (192.168.1.101)
-Target Machine: Windows 10/11 (192.168.1.100)
-Network: Internal Network
+---
 
-Both VMs are isolated and connected to the internet through pFSense Router/Firewall.
+## 📌 Lab Overview
 
+- **Wazuh Manager** (central SIEM for log aggregation and alerting)  
+- **Wazuh Agents** deployed on Windows and Linux endpoints  
+- Real-time monitoring for system events, authentication, file integrity, and network activity  
+- Dashboards for visualizing security alerts and trends  
+- Safe environment for **Red Team / Blue Team exercises**  
 
-# 🛠 Prerequisites
+---
 
-VirtualBox
-
-Kali Linux ISO
-
-Windows 10/11 ISO
-
-pfSense ISO
-
-Internal network created in VirtualBox
+## 🏗️ Lab Architecture
+[Windows/Linux Agents] ---> [Wazuh Manager] ---> [Elasticsearch + Kibana] ---> [Dashboard]
 
 
+- **Agents**: Collect logs and monitor endpoints  
+- **Manager**: Aggregates logs, applies rules, triggers alerts  
+- **Elasticsearch**: Stores event data  
+- **Kibana**: Visualizes logs and alerts  
 
-**2. Test connection**
-Ping
+---
 
-<img src="https://imgur.com/a/jlQNbB9.png" height="80%" width="80%" alt="ping"/>
+## ⚙️ Deployment Details
 
-# 🔥 Attack — Nmap Recon
-**Nmap Port Scanning**
-nmap -F 192.168.20.101 
-To fast scan the most common ports to see any active ports.
+### Wazuh Manager
+- OS: Ubuntu 22.04  
+- Components: Wazuh Manager, Filebeat, Elasticsearch, Kibana  
+- Installed via automated script (`install-wazuh-manager.sh`)  
+- Handles log collection, alerting, and dashboard visualization  
 
-[https://imgur.com/a/jlQNbB9]
+### Wazuh Agents
+- OS: Windows 10 / Windows Server / Linux  
+- Configured to connect to Wazuh Manager  
+- Monitors system logs, security events, and network activity  
+- Installed via automated script (`install-wazuh-agent.sh`)  
 
+---
 
-**Nmap Version Scan**
+## 🔐 Security Features Practiced
 
-(Screenshot)
+- Real-time endpoint monitoring and alerting  
+- Custom rule creation for log analysis  
+- Incident detection and investigation  
+- Visualization of security metrics in dashboards  
+- Centralized management of endpoints  
 
-**Nmap Aggressive Scan**
+---
 
-(Screenshot)
+## 🚀 Future Enhancements
+
+- Integrate with Active Directory lab for domain event monitoring  
+- Forward alerts to Slack/Teams  
+- Automate deployment with Ansible  
+- Deploy IDS/IPS for proactive security  
+- Correlate alerts with MITRE ATT&CK framework  
+
+---
+
+## 🛠️ Tools & Technologies
+
+- **Wazuh Manager & Agents**  
+- **Elasticsearch & Kibana**  
+- **Windows 10 / Windows Server / Linux**  
+- **Sysmon** (for Windows log monitoring)  
+- **Filebeat** (log forwarding)  
+
+---
+
+## 🎯 Learning Objectives
+
+- Implement and deploy a full SIEM solution  
+- Monitor endpoints for security threats  
+- Customize detection rules  
+- Analyze logs and visualize alerts  
+- Practice Red Team and Blue Team exercises in a safe lab  
+
